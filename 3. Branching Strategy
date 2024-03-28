@@ -1,1 +1,30 @@
 # My supposed branching strategy is GIT FLOW
+
+Principal Branches
+1. MASTER: The main branch, which houses all of the code used in production. 
+The modifications are merged into the master branch and applied during the deployment when the code in the "develop" branch is prepared for public release.
+
+2. DEVELOP: All of the real development takes place here. 
+This is where all of the pre-production code is kept, and the develop branch receives a direct merge of all the supporting branches' finished code. 
+
+feature: Feature branches are used to develop new features and branches off exclusively from the develop branch.
+hotfix: This is to deal with production issues where quick fixes are required. They can branch off from the master itself, but need to be merged to both master and develop branches.
+release: This branch is used to aggregate fixes and improvements and prepare for the production release. It will be branched from the develop branch and merged to both develop and master.
+
+STRATEGY
+Main Branches: When working on features or hotfixes, developers should branch out into develop or main.
+Feature Branches: Take the develop branch and make a new feature branch.
+Release Branches: When getting ready for a release, make a new release branch from develop.
+Hotfix Branches: To address important production issues, create a new hotfix branch from the main branch.
+
+MERGING BRANCHES
+Feature Branches: Following code review and successful CI/CD builds, merge feature branches into develop using pull requests.
+Release Branches: Following testing and validation, merge release branches into both main and develop.
+Hotfix Branches: After resolving the major issue, merge hotfix branches into main and develop.
+
+Integration of CI/CD: Pipeline Triggers
+CI/CD pipelines can be set up to start automatically when feature branches and pull requests are pushed.
+Strategies for Deployment:
+Feature branches should be sent to testing environments for development.
+Release branches should be sent to staging environments for last-minute testing before to production.
+Hotfix branches should be immediately deployed to production following approval and validation.
